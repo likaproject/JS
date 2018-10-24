@@ -1,5 +1,5 @@
 //--1--
-/*var person = {};
+var person = {};
 var Name = prompt('Как ваше имя?') ;// Elena
 
 function Poll(){
@@ -11,7 +11,7 @@ console.log(person.name);//Elena
 //console.log(window.name);//Elena, but person.name - undefined
 
 //--2-
-/*
+
 sumTo(1) = 1
 sumTo(2) = 2 + 1 = 3
 sumTo(3) = 3 + 2 + 1 = 6
@@ -41,22 +41,85 @@ function hello(a, b){
 }
 console.log(hello(8, 8));
 console.log(hello(3, 5));
-console.log(hello(5, 2));*/
+console.log(hello(5, 2));
 
 //--4--
-var obj = {};
+var obj = {
+    name: 'Stranger',
+    getProp: function(){
+        for (var key in obj) {
+            console.log(key)
+        }
+    }
+}
+
 Object.defineProperty(obj, 'number', {
-  enumerable: false,//if you set it to 'true', you'll see this property (line 59)
+  enumerable: false,
   value: 9
 });
-obj.name = 'Stranger';
+console.log(obj.getProp());//name, getProp, undefined
 
-function getProp(obj){
-	for (key in obj) {
-		console.log(key);
-	}
+var Param;// it can be prompt();
+obj.setDouble = function(Param){
+    Param  = Param * 2;
+    return (Param); //18
 }
-console.log(getProp(obj));// only value 'name' is visible
+
+obj.getDouble = function(Param){
+    Param  = Param / 3; 
+    return (Param); //6
+}
+
+console.log(obj.setDouble(9)); //18
+console.log(obj.getDouble(9)); //3
+console.log(obj.getProp()); //name, getProp, setDouble, getDouble, undefined
+
+//--5--
+var vasya = { name: 'Вася', age: 23 };
+var masha = { name: 'Маша', age: 18 };
+var vovochka = { name: 'Вовочка', age: 6 };
+
+var people = [ vasya , masha , vovochka ];
+
+people.sort(function(a, b){
+    var c = a.age - b.age;
+    return c;
+});
+// теперь people: [vovochka, masha, vasya]
+console.log(people[0].age) // 6
+
+var Names = [];
+people.forEach(function(person, people){
+    Names += person.name + ' '; 
+});
+console.log(Names);// Вовочка Маша Вася
+
+//--6--
+var arr = ['qwerty', 
+       'union', 
+       'qaz', 
+       '123', 
+       'qwerty',
+       'default'];
+
+//let unique = [...new Set(arr)]; //ES6
+function F(value, index, self) { 
+    return self.indexOf(value) === index;
+}
+
+var unique = arr.filter(F);
+    
+console.log(unique);//["qwerty", "union", "qaz", "123", "default"]
+
+
+
+
+
+
+
+
+
+
 
 
 
