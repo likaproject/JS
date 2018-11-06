@@ -7,10 +7,11 @@ animal.eat = function() {
     this.full = true;
 };
 
-rabbit.eat();//animal
+rabbit.eat();
+console.log(rabbit.full === true);//true
 
 //--2--
-var animal = { jumps: null };
+/*var animal = { jumps: null };
 var rabbit = { jumps: true };
 
 rabbit.__proto__ = animal;
@@ -29,7 +30,7 @@ delete animal.jumps;
 pockets -> bed -> table -> head. То есть pockets.pen == 3,
 bed.glasses == 1, но table.money == undefined.*/
 
-var head = {
+/*var head = {
   glasses: 1
 };
 
@@ -56,7 +57,7 @@ bed.__proto__= table;
 Попробуйте протестировать. //head.glasses is fasteer*/
 
 //--4--
-function Rabbit() { };
+/*function Rabbit() { };
 Rabbit.prototype = { eats: true };
 
 var rabbit = new Rabbit();
@@ -96,7 +97,7 @@ rabbit.test();//object Object
 rabbit.__proto__.test();//object Object
 Rabbit.prototype.test();//object Object
 Object.getPrototypeOf(rabbit).test();//object Object
-
+*/
 //--6--
 
 function Hamster() {  };
@@ -109,14 +110,19 @@ Hamster.prototype.found = function(something) {//found is a method of prototype
 
 // Создаём двух хомяков и кормим первого
 speedy = new Hamster();
+speedy.food = [];//reassign method food for speedy,so we'll feed only! speedy;
 lazy = new Hamster();
 
 //there is no such method in oblect speedy, 
 //so proto chain goes to Hamster.prototype and executes it's method found
 speedy.found("яблоко");
-console.log(Hamster.prototype.food.length);//1
+console.log(Hamster.prototype.food.length);//1 (0 - because of str112)
 speedy.found("орех");
-console.log(Hamster.prototype.food.length);//2
+console.log(Hamster.prototype.food.length);//2(0 - because of str112)
+
+console.log(speedy.food.length);//2
+console.log(lazy.food.length);//0 - because of str112;
+
 //alert(speedy.food.length); // 2
 //alert(lazy.food.length);   // 2 
 //lazy has no method found, chain of proto goes to
@@ -127,7 +133,7 @@ console.log(speedy.found === Hamster.prototype.found);
 console.log(lazy.found === Hamster.prototype.found);
 
 //--7--
-class Person {
+/*class Person {
   constructor(name, sourname, age){
       //personal data
       this.name = name;
@@ -150,7 +156,7 @@ console.log(person1.sourname);//Bush
 console.log(person1.age);//25
 */
 
-class Programmer extends Person {
+/*class Programmer extends Person {
     constructor(name, sourname, age, mainSkill, sallary, enLevel) {
         super(name, sourname, age);
         this.mainSkill = mainSkill;
@@ -174,29 +180,29 @@ console.log(person4.age);//28
 console.log(person1.mainSkill);//undefined
 console.log(person3.sallary);//1700
 console.log(person4.enLevel);//Так собі...
-
+*/
 //--8--
-function Adder(startingValue){
-    this.startingValue = startingValue;
-    
+function Adder(){
+	
+    this.startingValue = 1;
+	
     this.addInput = function(){
-        let value = prompt('Введите число');
-        startingValue = startingValue + (+value);
-        return startingValue;
+        this.startingValue += +prompt('Введите число');
     }
     
     this.showValue = function(){
-        return startingValue;
+        return this.startingValue;
     }
 }
-var adder = new Adder(1); // начальное значение 1
-adder.addInput(); // прибавит ввод prompt к текущему значению
-adder.addInput(); // прибавит ввод prompt к текущему значению
-console.log(adder.showValue()); // выведет текущее значение*/
+var adder = new Adder(); // начальное значение startingValue === 1;
+adder.addInput(); // вводим, например, 1
+adder.addInput(); //вводим 2
+//1 + 1 + 2 = 4
+console.log(adder.showValue()); // выведет текущее значение - 4;*/
 
 //--9--
 
-function Sum(a){
+/*function Sum(a){
     
      var A = a;
     
@@ -211,10 +217,10 @@ function Sum(a){
 }
 
 console.log(Sum(3)(2)(1));//6
-console.log(Sum(-3)(-2)(10));//5
+console.log(Sum(-3)(-2)(10));//5*/
 
 //--10--
-let str = 'Lorem Ipsum - это текст-"рыба" Lorem Ipsum - это текст-"рыба" ';
+/*let str = 'Lorem Ipsum - это текст-"рыба" Lorem Ipsum - это текст-"рыба" ';
 
 let container = document.getElementById('main');
 let runningStr = '';
@@ -227,12 +233,12 @@ function run(){
             /*container.style.color = 'rgb('+ Math.floor(Math.random() * 255) + 1 
                                     + ',' + Math.floor(Math.random() * 255) + 1 
                                     + ',' + Math.floor(Math.random() * 255) + 1 
-                                    + ')';*/
+                                    + ')';
         } 
    }  
 }
 
-setInterval('run()', 200);
+setInterval('run()', 200);*/
 
 
 
